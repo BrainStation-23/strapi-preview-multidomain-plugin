@@ -1,1 +1,1 @@
-export const PLUGIN_ID = 'preview-button-before-build';
+export const PLUGIN_ID = 'preview-button-multidomain';

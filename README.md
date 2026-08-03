@@ -1,46 +1,46 @@
-# preview-button-before-build Addon for "strapi-plugin-preview-button"
-Plugin for Strapi 5 preview-button extension to support multiple domain in author Draft preview and publish
+# preview-button-multidomain
 
-Pre-requirement
+Addon for [strapi-plugin-preview-button](https://github.com/mattmilburn/strapi-plugin-preview-button). Extends draft/published preview with multi-domain host selection via `plugin/preview-button/before-build-url`.
+
+## Prerequisites
+
 - Strapi 5.x
-- strapi-plugin-preview-button required plugin [strapi-plugin-preview-button](https://www.npmjs.com/package/strapi-plugin-preview-button/v/0.2.9)
+- `strapi-plugin-preview-button@^3` enabled
 
+## Enable in `config/plugins`
 
-### Enable plugin in plugins.js
-```
+```js
+'preview-button-multidomain': {
+  enabled: true,
+},
 
-  'preview-button-before-build': {
-      enabled: true
+'preview-button': {
+  enabled: true,
+  config: {
+    contentTypes: [
+      {
+        uid: 'api::content-type',
+        draft: {
+          url: `{host}/api/preview?slug={slug}&contentType=login-page&secret=${process.env.PREVIEW_SECRET}&status=draft`,
+        },
+        published: {
+          url: `{host}/api/preview?slug={slug}&contentType=login-page&secret=${process.env.PREVIEW_SECRET}&status=published`,
+        },
+      },
+    ],
   },
-
-  'preview-button': {
-      enabled: true,
-      config: {
-        contentTypes: [
-          {
-            uid: 'api::content-type',
-            draft: {
-              url: `{host}/api/preview?slug={slug}&contentType=login-page&secret=${process.env.PREVIEW_SECRET}&status=draft`,
-            },
-            published: {
-              url: `{host}/api/preview?slug={slug}&contentType=login-page&secret=${process.env.PREVIEW_SECRET}&status=published`
-            }
-          },
-          {
-            ....
-          }
-          ...
-        ]
-      }
-  }
-
+},
 ```
 
-### .env update
-```
-# new add after extend preview plugin
+Migration from the old package name: replace `'preview-button-before-build'` with `'preview-button-multidomain'`.
+
+## Env (names only)
+
+```bash
 STRAPI_ADMIN_CLIENT_DE_URL=http://localhost:3000
 STRAPI_ADMIN_CLIENT_AT_URL=http://localhost:3001
 STRAPI_ADMIN_CLIENT_CH_URL=http://localhost:3002
 ALLOWED_ORIGINS=http://localhost:3000,http://localhost:3001,http://localhost:3002
 ```
+
+(Legacy hard-coded host map; Phase 2 will replace with configurable `STRAPI_ADMIN_DOMAIN_*` domains.)
