@@ -1,24 +1,26 @@
-import { getTranslation } from './utils/getTranslation';
-import { PLUGIN_ID } from './pluginId';
 import { Initializer } from './components/Initializer';
-import { PluginIcon } from './components/PluginIcon';
+import { PLUGIN_ID } from './pluginId';
+import { getCachedPublicConfig, loadPublicConfig } from './utils/publicConfig';
+import { replaceHostInState } from './utils/replaceHostInState';
+import { resolveClientUrl } from './utils/resolveClientUrl';
+
+async function ensurePublicConfig() {
+  const cached = getCachedPublicConfig();
+  if (cached.domains.length > 0 || cached.defaultUrl) {
+    return cached;
+  }
+
+  try {
+    const { getFetchClient } = await import('@strapi/strapi/admin');
+    const { get } = getFetchClient();
+    return await loadPublicConfig(get);
+  } catch {
+    return getCachedPublicConfig();
+  }
+}
 
 export default {
   register(app) {
-    // app.addMenuLink({
-    //   to: `plugins/${PluginIcon}`,
-    //   icon: PluginIcon,
-    //   intlLabel: {
-    //     id: `${PLUGIN_ID}.plugin.name`,
-    //     defaultMessage: PLUGIN_ID,
-    //   },
-    //   Component: async () => {
-    //     const { App } = await import('./pages/App');
-
-    //     return App;
-    //   },
-    // });
-
     app.registerPlugin({
       id: PLUGIN_ID,
       initializer: Initializer,
@@ -27,64 +29,18 @@ export default {
     });
   },
 
-  // async registerTrads({ locales }) {
-  //   return Promise.all(
-  //     locales.map(async (locale) => {
-  //       try {
-  //         const { default: data } = await import(`./translations/${locale}.json`);
-
-  //         return { data, locale };
-  //       } catch {
-  //         return { data: {}, locale };
-  //       }
-  //     })
-  //   );
-  // },
-
   bootstrap(app) {
-      app.registerHook('plugin/preview-button/before-build-url', ({ data, draft, published }) => {
-        let client_url;
-        const locale = data.locale
-        switch (locale) {
-          case 'de-DE':
-          client_url = `${process.env.STRAPI_ADMIN_CLIENT_DE_URL}`;  
-          break;
-          case 'de-AT':
-          client_url = `${process.env.STRAPI_ADMIN_CLIENT_AT_URL}`;
-          break;  
-          case 'de-CH':
-          client_url = `${process.env.STRAPI_ADMIN_CLIENT_CH_URL}`;
-          break;
-          default:
-          break;
-        }
-
-        const slug = data.slug
-
-        switch (slug) {
-          case 'de_DE':
-          client_url = `${process.env.STRAPI_ADMIN_CLIENT_DE_URL}`;
-          break;  
-          case 'de_AT':
-          client_url = `${process.env.STRAPI_ADMIN_CLIENT_AT_URL}`;
-          break;  
-          case 'de_CH':
-          client_url = `${process.env.STRAPI_ADMIN_CLIENT_CH_URL}`;
-          break;  
-          default:
-          break;
-        }
+    app.registerHook(
+      'plugin/preview-button/before-build-url',
+      async ({ data, draft, published }) => {
+        const publicConfig = await ensurePublicConfig();
+        const clientUrl = resolveClientUrl(data, publicConfig);
 
         return {
-          published:{
-            ...published,
-            url: published.url.replace('{host}', client_url),
-          },
-          draft:{
-            ...draft,
-            url: draft.url.replace('{host}', client_url),
-          },
+          draft: replaceHostInState(draft, clientUrl),
+          published: replaceHostInState(published, clientUrl),
         };
-      });
-    },
+      }
+    );
+  },
 };

@@ -2,4 +2,6 @@
 
 const PLUGIN_ID = 'preview-button-multidomain';
 
-module.exports = { PLUGIN_ID };
+module.exports = {
+  PLUGIN_ID,
+};

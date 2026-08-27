@@ -1,5 +1,5 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.0",
   "keywords": ["Strapi", "Strapi 5", "Plugin", "Preview Button", "Multidomain"],
   "type": "commonjs",
   "exports": {
@@ -9,16 +9,20 @@
       "import": "./dist/admin/index.mjs",
       "require": "./dist/admin/index.js",
       "default": "./dist/admin/index.js"
-    }
+    },
+    "./strapi-server": "./strapi-server.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "strapi-server.js",
+    "server"
   ],
   "scripts": {
     "build": "strapi-plugin build",
     "watch": "strapi-plugin watch",
     "watch:link": "strapi-plugin watch:link",
-    "verify": "strapi-plugin verify"
+    "verify": "strapi-plugin verify",
+    "test": "node --test tests/**/*.test.js"
   },
   "dependencies": {
     "@strapi/design-system": "^2.0.0-rc.27",
