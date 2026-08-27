@@ -1,29 +1,41 @@
 # preview-button-multidomain
 
-Strapi 5 extender for [strapi-plugin-preview-button](https://github.com/mattmilburn/strapi-plugin-preview-button). Adds **multi-domain** preview hosts by resolving locale/slug → frontend URL and substituting `{host}` in draft/published templates.
+**[strapi-plugin-preview-button](https://www.npmjs.com/package/strapi-plugin-preview-button)**, extended for **multiple domains and locales**.
+
+Keep using [strapi-plugin-preview-button](https://www.npmjs.com/package/strapi-plugin-preview-button) for Open draft preview / Copy link / live view. This package plugs into its `plugin/preview-button/before-build-url` hook so each entry’s **locale** (and optional slug) maps to the right frontend **host** — one domain for many locales, or a different domain per locale — by substituting `{host}` in your URL templates.
+
+**Depends on:** [`strapi-plugin-preview-button@^3`](https://www.npmjs.com/package/strapi-plugin-preview-button) (required peer; this package does **not** replace it).  
+**Upstream source:** [mattmilburn/strapi-plugin-preview-button](https://github.com/mattmilburn/strapi-plugin-preview-button)
 
 ## Features
 
-- Multi-domain host selection via `plugin/preview-button/before-build-url`
-- Configurable `domains[]` mapped to exact `.env` keys (no hard-coded country switches)
-- Single consumer config: put `contentTypes` on this plugin; mirrored onto `preview-button` at bootstrap
-- Optional `defaultEnv` fallback when locale/slug do not match
+- Extends [strapi-plugin-preview-button](https://www.npmjs.com/package/strapi-plugin-preview-button) — same buttons, multi-domain / multi-locale hosts
+- Map **locales** (and slugs) → frontend hosts via configurable `domains[]`
+- One host for several locales, or separate hosts per locale/market
+- Exact `.env` keys on `domains[].env` (no auto-prefix)
+- Optional `defaultEnv` when locale/slug do not match
 - Locale match first, then slug (slug can override); null-safe `{host}` replace
+- Single consumer config: `contentTypes` on this plugin, mirrored onto `preview-button` at bootstrap
 - Bundler-safe: server resolves env → URLs; admin fetches public config
-- Configure example mixes one multi-language host (DACH) with additional hosts (e.g. English)
 
 ## Prerequisites
 
 - Strapi 5.x
-- `strapi-plugin-preview-button@^3` installed **and** enabled (`'preview-button': true`)
+- **[strapi-plugin-preview-button](https://www.npmjs.com/package/strapi-plugin-preview-button)** `@^3` installed **and** enabled (`'preview-button': true`)
 
-npm/peer install does **not** auto-enable upstream in Strapi. Both plugins must appear in `config/plugins`.
+Install and enable [strapi-plugin-preview-button](https://www.npmjs.com/package/strapi-plugin-preview-button) first. This extender only chooses the host; without upstream, there are no preview buttons. Peer install does **not** auto-enable it in Strapi — both plugins must appear in `config/plugins`.
 
 ## Install
 
+Beta (current):
+
 ```bash
-npm install preview-button-multidomain strapi-plugin-preview-button@^3
+npm install preview-button-multidomain@beta strapi-plugin-preview-button@^3
 ```
+
+Or pin: `preview-button-multidomain@1.0.0-beta.0`.
+
+Source and issues: [github.com/BrainStation-23/strapi-preview-multidomain-plugin](https://github.com/BrainStation-23/strapi-preview-multidomain-plugin). Releases: [GitHub Releases](https://github.com/BrainStation-23/strapi-preview-multidomain-plugin/releases/new).
 
 ## Configure `config/plugins`
 
@@ -154,3 +166,18 @@ npm run build
 npm run verify
 npm test
 ```
+
+## Links
+
+| | |
+| --- | --- |
+| **Required dependency (npm)** | [strapi-plugin-preview-button](https://www.npmjs.com/package/strapi-plugin-preview-button) (`^3`) |
+| Upstream source | [mattmilburn/strapi-plugin-preview-button](https://github.com/mattmilburn/strapi-plugin-preview-button) |
+| Issues | https://github.com/BrainStation-23/strapi-preview-multidomain-plugin/issues |
+
+---
+
+**Organization:** [BrainStation-23](https://github.com/BrainStation-23)  
+**Author:** Abu Sayed ([Sayedbs](https://github.com/sayed021) / `sayed021`)  
+**Repository:** [BrainStation-23/strapi-preview-multidomain-plugin](https://github.com/BrainStation-23/strapi-preview-multidomain-plugin)  
+**Release notes:** [RELEASE.md](./RELEASE.md)
