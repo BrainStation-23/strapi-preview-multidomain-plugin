@@ -1,6 +1,6 @@
 
 <div align="center">
-    <img style="width: 160px; height: auto;" src="/public/preview-multi-domain-banner-2.png" alt="Logo for Strapi preview button plugin" />
+    <img style="width: 450px; height: auto;" src="/public/preview-multi-domain-banner-2.png" alt="Logo for Strapi preview button plugin" />
     <h1>Strapi Preview Button Multidomain</h1>
     <p>A plugin for Strapi CMS that adds a preview button and live view button to the content manager edit view multi domain and multi locals.</p>
     <p>
@@ -9,6 +9,9 @@
       </a>
       <a href="https://strapi.io">
         <img src="https://img.shields.io/badge/strapi-v5-blue" alt="Strapi supported version" />
+      </a>
+      <a href="https://github.com/BrainStation-23/strapi-preview-multidomain-plugin">
+        <img src="https://img.shields.io/badge/github-repo-blue?logo=github" alt="Github preview button multi domain" />
       </a>
     </p>
     <img style="width: 960px; height: auto;" src="public/preview-button-multi-domain-1.png" alt="Screenshot for Strapi preview button plugin" />
