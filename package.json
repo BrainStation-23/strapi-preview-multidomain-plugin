@@ -1,17 +1,21 @@
 {
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0",
   "keywords": [
     "Strapi",
     "Strapi 5",
     "Plugin",
     "Preview Button",
+    "Strapi draft content sent to review from client",
     "strapi-plugin-preview-button",
     "Multidomain",
     "multi-locale",
+    "multi domain multi locales",
+    "multi domain multi languages",
     "i18n",
     "BrainStation-23",
+    "https://brainstation-23.com",
     "Abu Sayed",
-    "Sayedbs",
+    "sayedbs",
     "sayed021"
   ],
   "type": "commonjs",
@@ -67,9 +71,9 @@
     "description": "Extends strapi-plugin-preview-button for multiple domains and locales via before-build-url."
   },
   "name": "preview-button-multidomain",
-  "description": "Extends strapi-plugin-preview-button (https://www.npmjs.com/package/strapi-plugin-preview-button) for multiple domains and locales: map locale/slug to frontend hosts and replace {host}. Requires peer strapi-plugin-preview-button@^3. By BrainStation-23 / Abu Sayed (Sayedbs, sayed021).",
+  "description": "Extends strapi-plugin-preview-button (https://www.npmjs.com/package/strapi-plugin-preview-button) for multiple domains and locales: map locale/slug to frontend hosts and replace {host}. Requires peer strapi-plugin-preview-button@^3. By BrainStation-23 / Abu Sayed (sayedbs, sayed021).",
   "license": "MIT",
-  "author": "Abu Sayed <saiful.sakib@brainstation-23.com>",
+  "author": "Abu Sayed <sayeed@brainstation-23.com>", 
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BrainStation-23/strapi-preview-multidomain-plugin.git"
@@ -79,3 +83,4 @@
   },
   "homepage": "https://github.com/BrainStation-23/strapi-preview-multidomain-plugin#readme"
 }
+

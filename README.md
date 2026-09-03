@@ -1,11 +1,11 @@
 
 <div align="center">
-    <img style="width: 450px; height: auto;" src="/public/preview-multi-domain-banner-2.png" alt="Logo for Strapi preview button plugin" />
+    <img style="width: 450px; height: auto;" src="https://raw.githubusercontent.com/BrainStation-23/strapi-preview-multidomain-plugin/HEAD/public/preview-multi-domain-banner-2.png" alt="Logo for Strapi preview button plugin" />
     <h1>Strapi Preview Button Multidomain</h1>
     <p>A plugin for Strapi CMS that adds a preview button and live view button to the content manager edit view multi domain and multi locals.</p>
     <p>
       <a href="https://www.npmjs.com/package/preview-button-multidomain">
-        <img src="https://img.shields.io/npm/v/strapi-plugin-preview-button.svg" alt="preview-button-multidomain Latest npm version" />
+        <img src="https://img.shields.io/npm/v/preview-button-multidomain.svg" alt="preview-button-multidomain latest npm version" />
       </a>
       <a href="https://strapi.io">
         <img src="https://img.shields.io/badge/strapi-v5-blue" alt="Strapi supported version" />
@@ -14,21 +14,18 @@
         <img src="https://img.shields.io/badge/github-repo-blue?logo=github" alt="Github preview button multi domain" />
       </a>
     </p>
-    <img style="width: 960px; height: auto;" src="public/preview-button-multi-domain-1.png" alt="Screenshot for Strapi preview button plugin" />
+    <img style="width: 960px; height: auto;" src="https://raw.githubusercontent.com/BrainStation-23/strapi-preview-multidomain-plugin/HEAD/public/preview-button-multi-domain-1.png" alt="Screenshot for Strapi preview button plugin" />
   </div>
   
 # preview-button-multidomain
 
-**[strapi-plugin-preview-button](https://www.npmjs.com/package/strapi-plugin-preview-button)**, extended for **multiple domains and locales**.
-
-Keep using [strapi-plugin-preview-button](https://www.npmjs.com/package/strapi-plugin-preview-button) for Open draft preview / Copy link / live view. This package plugs into its `plugin/preview-button/before-build-url` hook so each entry’s **locale** (and optional slug) maps to the right frontend **host** — one domain for many locales, or a different domain per locale — by substituting `{host}` in your URL templates.
-
-**Depends on:** [`strapi-plugin-preview-button@^3`](https://www.npmjs.com/package/strapi-plugin-preview-button) (required peer; this package does **not** replace it).  
-**Upstream source:** [mattmilburn/strapi-plugin-preview-button](https://github.com/mattmilburn/strapi-plugin-preview-button)
+**Depends on:** [`strapi-plugin-preview-button@^3`](https://www.npmjs.com/package/strapi-plugin-preview-button) (required peer; does not replace it).  
+**Upstream:** [mattmilburn/strapi-plugin-preview-button](https://github.com/mattmilburn/strapi-plugin-preview-button)
 
 ## Features
 
-- Extends [strapi-plugin-preview-button](https://www.npmjs.com/package/strapi-plugin-preview-button) — same buttons, multi-domain / multi-locale hosts
+- Works with upstream **Open draft preview**, **Copy link**, and **live view** (does not replace those buttons)
+- Extends [strapi-plugin-preview-button](https://www.npmjs.com/package/strapi-plugin-preview-button) for multi-domain / multi-locale hosts
 - Map **locales** (and slugs) → frontend hosts via configurable `domains[]`
 - One host for several locales, or separate hosts per locale/market
 - Exact `.env` keys on `domains[].env` (no auto-prefix)
@@ -46,15 +43,11 @@ Install and enable [strapi-plugin-preview-button](https://www.npmjs.com/package/
 
 ## Install
 
-Beta (current):
-
 ```bash
-npm install preview-button-multidomain@beta strapi-plugin-preview-button@^3
+npm install preview-button-multidomain strapi-plugin-preview-button@^3
 ```
 
-Or pin: `preview-button-multidomain@1.0.0-beta.0`.
-
-Source and issues: [github.com/BrainStation-23/strapi-preview-multidomain-plugin](https://github.com/BrainStation-23/strapi-preview-multidomain-plugin). Releases: [GitHub Releases](https://github.com/BrainStation-23/strapi-preview-multidomain-plugin/releases/new).
+Docs: [README](https://github.com/BrainStation-23/strapi-preview-multidomain-plugin/blob/main/README.md) · [Release notes](https://github.com/BrainStation-23/strapi-preview-multidomain-plugin/blob/main/RELEASE.md)
 
 ## Configure `config/plugins`
 
@@ -192,11 +185,14 @@ npm test
 | --- | --- |
 | **Required dependency (npm)** | [strapi-plugin-preview-button](https://www.npmjs.com/package/strapi-plugin-preview-button) (`^3`) |
 | Upstream source | [mattmilburn/strapi-plugin-preview-button](https://github.com/mattmilburn/strapi-plugin-preview-button) |
+| This plugin (npm) | https://www.npmjs.com/package/preview-button-multidomain |
+| README | https://github.com/BrainStation-23/strapi-preview-multidomain-plugin/blob/main/README.md |
+| Release notes | https://github.com/BrainStation-23/strapi-preview-multidomain-plugin/blob/main/RELEASE.md |
 | Issues | https://github.com/BrainStation-23/strapi-preview-multidomain-plugin/issues |
 
 ---
 
 **Organization:** [BrainStation-23](https://github.com/BrainStation-23)  
-**Author:** Abu Sayed ([Sayedbs](https://github.com/sayed021) / `sayed021`)  
+**Author:** Abu Sayed ([sayedbs](https://github.com/sayedbs))  
 **Repository:** [BrainStation-23/strapi-preview-multidomain-plugin](https://github.com/BrainStation-23/strapi-preview-multidomain-plugin)  
-**Release notes:** [RELEASE.md](./RELEASE.md)
+**Release notes:** https://github.com/BrainStation-23/strapi-preview-multidomain-plugin/blob/main/RELEASE.md
